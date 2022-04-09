@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Add new Scholarship
+{% endblock %}
+
+{% block content %}
+    <h2>Add Information of New Scholarship</h2>
+    <form action="{% url 'new' %}" method="post" id="form" encType="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Scholarship Name:<span>*</span></label>
+            <input type="text" name="name" id="name" required>
+        </div>
+        <div class="form-group">
+            <label for="img">Banner Image: </label>
+            <input type="file" name="img" id="img">
+        </div>
+        <div class="form-group">
+            <label for="name">Scholarship Provider:<span>*</span></label>
+            <input type="text" name="provider" id="provider" required>
+        </div>
+        <div class="form-group">
+            <label for="eligibility">Eligibility:<span>*</span> </label>
+            <textarea name="eligibility" id="eligibility" cols="30" rows="5"required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="conditions">Conditions For Scholarship:<span>*</span> </label>
+            <div id="conditionList">
+                <input type="text" class="conditionItem" name="condition1" id="condition1" placeholder="Condition 1" required></div>
+            <input type="hidden" name="conditionCount" id="conditionCount" value="1">
+            <button type="button" id="addCondition">+ Add Condition</button>
+        </div>
+        <div class="form-group">
+            <label for="duration">Duration:<span>*</span> </label>
+            <textarea name="duration" id="duration" cols="30" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="rate">Rate of Scholarship:<span>*</span> </label>
+            <textarea name="rate" id="rate" cols="30" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="lastDateToApply">Last Date to apply: </label>
+            <input type="date" name="lastDateToApply" id="lastDateToApply">
+        </div>
+        <div class="form-group">
+            <label for="mode">Mode of Application:<span>*</span> </label>
+            <textarea name="mode" id="mode" cols="30" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="evaluation">Evaluation: </label>
+            <textarea name="evaluation" id="evaluation" cols="30" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="applyUrl">Apply Url:</label>
+            <input type="text" name="applyUrl" id="applyUrl" placeholder="https://applicationform.com">
+        </div>
+        <div class="form-group">
+            <h4>Social Links</h4>
+            <input type="email" name="email" id="email" placeholder="Email*" required>
+            <input type="url" name="instagram" id="instagram" placeholder="Instagram Id(optional)">
+            <input type="url" name="linkedin" id="linkedin" placeholder="Linkedin Id(optional)">
+            <input type="url" name="website" id="website" placeholder="Website(optional)">
+        </div>
+        <div class="form-group">
+            <div id="personalSection"></div>
+            <input type="hidden" name="personalCountTotal" id="personalCountTotal" value="0">
+            <button type="button" id="addpersonalSection">+ Add Personal Section</button>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add">
+        </div>
+    </form>
+    <marquee behavior="alternate" direction="right">Scholarship will be visible once verified by Admin</marquee>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/new.js' %}"></script>
+{% endblock %}

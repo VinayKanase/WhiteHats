@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Search {% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}" />
+{% endblock %} {% block content %}
+<div class="wrapper">
+    <h2 class="text-center">Explore Scholarships</h2>
+    <form action="{% url 'search' %}" method="get">
+        <span>Search By: </span>
+        <select name="searchBy" id="searchBy">
+            <option value="name">Name</option>
+            <option value="provider">Provider</option>
+            <option value="all">All</option>
+            <option value="topGrossing">Top Grossing</option>
+        </select>
+        <input type="search" name="q" placeholder="Search..." />
+        <input class="btn" type="submit" value="Search" />
+    </form>
+    <div class="results">
+        <h2>Search Results:</h2>
+        <div class="resultList">
+            {% for scholarship in scholarships %}
+            <div class="resultCard">
+                <div class="textWrapper">
+                    <a href="{% url 'scholarship' id=scholarship.uid %}">
+                        <h3>Scholarship Name: {{ scholarship.name }}</h3>
+                        <p class="provider">
+                            Scholarship Provided by: {{ scholarship.provider }}
+                        </p>
+                    </a>
+                    {% if scholarship.lastDateToApply %}
+                    <p class="lastDate">
+                        Last Date to Apply:
+                        <span>{{ scholarship.lastDateToApply }}</span>
+                    </p>
+                    {% endif %}
+                </div>
+                <a href="">{{ scholarship.liked }} Like</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
