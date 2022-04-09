@@ -38,3 +38,26 @@ def signUp(request):
         Controller to sign up new user
     """
     return render(request, 'signUp.html')
+
+
+def scholarship(request):
+    """
+        Controller to see information of each scholarship
+    """
+    return render(request, 'scholarship.html')
+
+
+def liked(request):
+    """
+        Controller to see total liked scholarships by you
+        Authorized to logged in users only 
+    """
+    return render(request, 'liked.html')
+
+
+def profile(request):
+    """
+        Controller to profile 
+        Authorized to logged in users only 
+    """
+    return render(request, 'profile.html')
