@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block title %}
+Home
+{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+{% block content %}
+<div class="headingContent">
+    <div class="contentWrapper">
+        <div class="homeHeading">
+            <h1>Study in your dream universatiy</h1>
+            <p class="moreInfo">One Place for all National/International Scholarships.</p>
+        </div>
+        <div class="homeHeadBtns">
+            <a class="btn" href="{% url 'search' %}">Explore</a>
+            {% if userLoggedIn %}
+            <a class="btn" href="{% url 'liked' %}">Liked</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="totalScholarships">
+    <div class="overlay">
+        <h2>Total Scholarships</h2>
+        <p>{{ totalScholarshipsAvailable }}</p>
+    </div>
+</div>
+<div class="apply">
+    <h2 class="center">How to Apply</h2>
+    <div class="stepCardContainer">
+        <div class="stepCard">
+            <div class="left">
+                <h3>01</h3>
+                <p class="stepCardHeading">Find best Scholarship for you</p>
+                <p class="moreInfo">Check eligibility, conditions, duration and rate, etc and select best for you and
+                    apply.</p>
+            </div>
+            <div class="right">
+                <img src="https://media2.giphy.com/media/3ohhwlEsgzUPnBqOR2/giphy.gif" alt="Img">
+            </div>
+        </div>
+        <div class="stepCard">
+            <div class="left">
+                <h3>02</h3>
+                <p class="stepCardHeading">Have Doubts?</p>
+                <p class="moreInfo">Ask Doubts related to scholarship in comments, socials provided or mail admin</p>
+            </div>
+            <div class="right">
+                <img src="https://media1.giphy.com/media/3ohhwEVKBOZd7bCQ7u/giphy.gif?cid=790b7611a8c16b70bb74b29083b1860cfa213dab07a82f7e&rid=giphy.gif&ct=s"
+                    alt="Img">
+            </div>
+        </div>
+        <div class="stepCard">
+            <div class="left">
+                <h3>03</h3>
+                <p class="stepCardHeading">Apply For scholarship</p>
+                <p class="moreInfo">Use apply now button for applying to scholarship or follow applying steps given in
+                    scholarship information</p>
+            </div>
+            <div class="right">
+                <img src="https://media4.giphy.com/media/l1J9wQIaj0He3bTSU/giphy.gif?cid=790b7611a86ad8888746d944787bf32148075276b8edb2de&rid=giphy.gif&ct=s"
+                    alt="Img">
+            </div>
+        </div>
+        <div class="stepCard">
+            <div class="left">
+                <h3>04</h3>
+                <p class="stepCardHeading">Help Others</p>
+                <p class="moreInfo">Like or Report Scholarship to help other students to find good scholarships.</p>
+            </div>
+            <div class="right">
+                <img src="https://media3.giphy.com/media/MXKsMrHOo7jG2Y0skk/giphy.gif?cid=790b7611b85acf8d30d1d2dd8097b2887642271282638fdc&rid=giphy.gif&ct=s"
+                    alt="Img">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
