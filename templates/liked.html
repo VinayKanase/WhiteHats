@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Most Liked Scholarships
+{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}" />
+{% endblock %}
+{% block content %}
+<div class="wrapper">
+    <div class="results">
+        <h2>{{ username }}'s Liked Scholarships</h2>
+        <div class="resultList">
+            {% for scholarship in likedScholarships %}
+            <div class="resultCard">
+                <a href="{% url 'scholarship' id=scholarship.uid %}">
+                    <div class="textWrapper">
+                        <h3>Scholarship Name: {{ scholarship.name }}</h3>
+                        <p class="provider">
+                            Scholarship Provided by: {{ scholarship.provider }}
+                        </p>
+                        {% if scholarship.lastDateToApply %}
+                        <p class="lastDate">
+                            Last Date to Apply:
+                            <span>{{ scholarship.lastDateToApply }}</span>
+                        </p>
+                        {% endif %}
+                    </div>
+
+                    <a href="{% url 'post_like' id=scholarship.uid %}">{{ scholarship.likes }}
+                        Like</a>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

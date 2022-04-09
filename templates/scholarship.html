@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Scholarship
+{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/scholarship.css' %}">
+{% endblock %}
+{% block content %}
+<div class="scholarshipContainer">
+    <div class="center">
+        <h1>{{ data.name }}</h1>
+        <h4 class="provider">{{ data.provider }}</h4>
+        <div class="options">
+            <a class="btn" href="{% url 'post_like' id=data.uid %}"> {{ data.likes }} <i
+                    style="font-size: 2rem;padding-left: 15px;" class="fa fa-heart"></i> </a>
+            <a class="btn" href="{% url 'post_report' id=data.uid %}"> {{ data.reports }} Report <i
+                    class="fa fa-thumbs-down" style="font-size: 2rem;padding: 0 8px;"></i> </a>
+        </div>
+        <img src="{{ data.bannerUrl }}" alt="">
+    </div>
+
+    <div class="section eligibility">
+        <h3>Introduction</h3>
+        <p>{{ data.introduction }}
+        </p>
+    </div>
+    {% if data.lastDateToApply %}
+    <div class="section">
+        <h2>Last Date to Apply: <span>{{ data.lastDateToApply }}</span></h2>
+    </div>
+    {% endif %}
+    <div class="section eligibility">
+        <h3>Eligibility for Scholarship</h3>
+        <p>{{ data.eligibility }}
+        </p>
+    </div>
+    <div class="section conditions">
+        <h3>Conditions of Scholarship</h3>
+        <ul>
+            {% for cond in data.conditions %}
+            <li>{{ cond }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="section duration">
+        <h3>Duration</h3>
+        <p>{{ data.duration }}</p>
+    </div>
+    <div class="section rate">
+        <h3>Rate</h3>
+        <p>{{ data.rateOfScholarship }}</p>
+    </div>
+    <div class="section evaluation">
+        <h3>Evaluation</h3>
+        <p>{{ data.evaluation }}</p>
+    </div>
+    {% if data.additionalSections %}
+    {% for section in data.additionalSections %}
+    <div class="section">
+        <h3>{{ section.heading }} </h3>
+        <p>{{ section.information }}</p>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <div class="section socials">
+        <h3>Socials</h3>
+
+        {% if socials.email %}
+        <a href="mailto:{{ socials.email }}" target="_blank" title="Email"><i class="fa fa-at"></i> </a>
+        {% endif %}
+        {% if socials.instagram %}
+        <a href="{{ socials.instagram }}" target="_blank"><i class="fa fa-instagram"></i></a>
+        {% endif %}
+        {% if socials.linkedin %}
+        <a href="{{ socials.linkedin }}" target="_blank">
+            <i class="fa fa-linkedin"></i>
+        </a>
+        {% endif %}
+        {% if socials.website %}
+        <a href="{{ socials.website }}" target="_blank"> <i class="gg-website"></i></a>
+        {% endif %}
+        {% if socials.facebook %}
+        <a href="{{ socials.facebook }}" target="_blank"> <i class="fa fa-facebook-f"></i> </a>
+        {% endif %}
+    </div>
+    {% if data.applyUrl %}
+    <a href="{{ data.applyUrl }}" class="btn">Apply Now</a>
+    {% endif %}
+</div>
+<div class="wrapper">
+    <h2>Comments <i class="fa fa-comments"></i></h2>
+    {% for comment in data.comments %}
+    <div class="comment">
+        <h4>{{ comment.by.name }}</h4>
+        <h5>{{ comment.by.role }}</h5>
+        <p>{{ comment.comment }}</p>
+    </div>
+    {% endfor %}
+</div>
+<div class="wrapper">
+    <h2>Add Comment</h2>
+    <form action="{% url 'post_comment'%}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{ data.uid }}">
+        <div class="form-group">
+            <textarea name="comment" id="comment" cols="30" rows="5" placeholder="Write your comment..."></textarea>
+        </div>
+        <div class="form-group">
+            <input class="btn" type="submit" value="Add Comment">
+        </div>
+    </form>
+</div>
+{% endblock %}

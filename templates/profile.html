@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{ name }}
+{% endblock %}
+{% block content %}
+<div class="profile-card">
+    <h2>Name: {{ userInfo.name }}</h2>
+    <h3>Email: {{ userInfo.email }}</h3>
+    <h4>Role: {{ userInfo.role }}</h4>
+    <div class="center">
+
+        <a href="{% url 'logout' %}" class="btn">Logout</a>
+        <a href="{% url 'change_password' %}" class="btn">Change Password</a>
+    </div>
+</div>
+{% endblock %}
