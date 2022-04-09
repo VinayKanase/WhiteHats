@@ -1,0 +1,42 @@
+.wrapper{
+    width: 80%;
+    margin: 0 auto;
+    background: #eee;
+    box-shadow: 0 0 4px black;
+    padding: 40px;
+}
+.wrapper form{
+    padding: 15px 0;
+    font-size: 1.9rem;
+    font-weight: 500;
+}
+.wrapper input[type="search"],
+.wrapper select{
+    font-size: 1.8rem;
+    padding: 10px;
+    margin: 0 10px;
+    border: none;
+    background: white;
+}
+.resultList{
+    padding: 10px;
+}
+.resultCard{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    margin: 20px 0;
+    padding: 20px 50px;
+    border-radius: 6px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+.resultCard .textWrapper{
+    width: 80%;
+}
+
+@media screen and (max-width: 720px) {
+.wrapper{
+    width: 100%;
+}      
+}
