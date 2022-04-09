@@ -36,7 +36,8 @@
                     </p>
                     {% endif %}
                 </div>
-                <a href="">{{ scholarship.liked }} Like</a>
+                <a href="{% url 'post_like' id=scholarship.uid %}">{{ scholarship.likes }}
+                    Like</a>
             </div>
             {% endfor %}
         </div>

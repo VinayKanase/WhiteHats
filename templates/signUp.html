@@ -1,35 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
-    SignUp
+SignUp
+{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
 {% endblock %}
 {% block content %}
+<div class="wrapper">
     <h2>Sign Up</h2>
     <form action="" method="post">
         {% csrf_token %}
         <ul class="message">
             <li>Your email need to be verified after sign up</li>
-        </>
-        <div class="input-group">
-            <label for="name">Name:<span>*</span></label>
-            <input type="text" name="name" id="name" placeholder="Name">
-        </div>
-        <div class="input-group">
-            <label for="email">Email:<span>*</span></label>
-            <input type="email" name="email" id="email" placeholder="Email">
-        </div>
-        <div class="input-group">
-            <label for="password">Password:<span>*</span></label>
-            <input type="password" name="password" id="password" placeholder="Password">
-        </div>
-        <!-- <div class="input-group">
-            <select name="role" id="role">
-                <option value="">-- Role --</option>
-                <option value="student">Student</option>
-                <option value="admin">Admin</option>
-            </select>
-        </div> -->
-        <div class="input-group">
-            <input type="submit" value="Sign Up">
-        </div>
+            <div class="input-group">
+                <label for="name">Name:<span>*</span></label>
+                <input type="text" name="name" id="name" placeholder="Name">
+            </div>
+            <div class="input-group">
+                <label for="email">Email:<span>*</span></label>
+                <input type="email" name="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:<span>*</span></label>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+            </div>
+            <div class="input-group">
+                <select name="role" id="role">
+                    <!-- <option value="">-- Role --</option> -->
+                    <option value="student">Student</option>
+                    <!-- <option value="company">Company</option> -->
+                </select>
+            </div>
+            <div class="input-group">
+                <input class="btn" type="submit" value="Sign Up">
+            </div>
     </form>
+</div>
 {% endblock %}

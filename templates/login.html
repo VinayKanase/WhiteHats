@@ -1,21 +1,28 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
-    Login
+Login
+{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
 {% endblock %}
 {% block content %}
+<div class="wrapper">
     <h2>Login</h2>
     <form action="" method="post">
         {% csrf_token %}
         <div class="input-group">
             <label for="email">Email: <span>*</span></label>
-            <input type="email" name="email" id="email">
+            <input type="email" name="email" id="email" required>
         </div>
         <div class="input-group">
             <label for="password">Password: <span>*</span></label>
-            <input type="password" name="password" id="password">
+            <input type="password" name="password" id="password" required>
         </div>
         <div class="input-group">
-            <input type="submit" value="Login">
+            <input class="btn" type="submit" value="Login">
         </div>
     </form>
+</div>
+
 {% endblock %}

@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +11,10 @@
     {% block styles %}
     {% endblock %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="{% static 'assets/favicon.ico' %}" type="image/x-icon">
 </head>
+
 <body>
     <nav class="navbar">
         <ul class="logo">
@@ -30,57 +34,95 @@
             <li>
                 <a href="{% url 'new' %}">Add new</a>
             </li>
+            {% if userLoggedIn %}
             <li>
-                <a href="">Help</a>
+                <a href="{% url 'liked' %}">Liked</a>
             </li>
+            {% if isAdmin %}
+            <li>
+                <a href="{% url 'admin' %}">Admin</a>
+            </li>
+            {% endif %}
+            <li>
+                <a href="{% url 'profile' %}"> <i class="fa fa-user-circle-o"></i> </a>
+            </li>
+            {% else %}
             <li>
                 <a href="{% url 'login' %}">Login</a>
             </li>
             <li>
                 <a href="{% url 'signUp' %}">Sign Up</a>
             </li>
+            {% endif %}
         </ul>
     </nav>
+    {% if messages %}
+    <div class="messages">
+        <ul>
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                {{ message }}
+                </li>
+                {% endfor %}
+        </ul>
+        <div class="close">Close</div>
+    </div>
+    {% endif %}
+
     {% block content %}
     {% endblock %}
-    <!-- <footer class="footer">
+    <footer class="footer">
         <div class="footerNav">
             <img src="{% static 'assets/Logo.png' %}" alt="Logo" />
-            <div class="contactDetails">
-                <h3>Contact:</h3>
-                <ul class="contact">
-                    <li>
-                        <a href="mailto:admin@scholarships.com">admin@scholarships.com</a>
-                    </li>
-                    <li>+91 0000 000 000</li>
-                </ul>
-            </div>
-            <div class="linksDetails">
-                <h3>Links:</h3>
-                <ul class="links">
-                    <li>
-                        <a href="">Add new Scholarships</a>
-                    </li>
-                    <li>
-                        <a href="">Search Scholarships</a>
-                    </li>
-                </ul>
+            <div class="footer-navCon">
+                <div class="contactDetails">
+                    <h3>Contact:</h3>
+                    <ul class="contact">
+                        <li>
+                            <a href="mailto:admin@scholarships.com">admin@scholarships.com</a>
+                        </li>
+                        <li>+91 0000 000 000</li>
+                    </ul>
+                </div>
+                <div class="linksDetails">
+                    <h3>Links:</h3>
+                    <ul class="links">
+                        <li>
+                            <a href="{% url 'new' %}">Add new Scholarships</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'search' %}">Search Scholarships</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="copyrights">
-            &copy; Vinay Kanse
+            <a href="https://github.com/VinayKanase/WhiteHats">&copy; WhiteHats</a>
         </div>
-    </footer> -->
-{% block scripts %}
+    </footer>
+    {% block scripts %}
     {% endblock %}
     <script>
+        // Handles hamburger or menu for nav if screen size is less
         let menu = document.querySelector(".menu");
         let navlinks = document.querySelector(".navlinks");
-        menu.addEventListener("click",()=>{
+        menu.addEventListener("click", () => {
             menu.classList.toggle("active");
             navlinks.classList.toggle("active");
         })
-
+        let messages = document.querySelector('.messages');
+        if (messages) {
+            // Removes messages after 10seconds
+            setTimeout(() => {
+                messages.style.display = "none";
+            }, 10000);
+            const close = document.querySelector('.close');
+            // Removes message on clicking on close
+            close.addEventListener("click", () => messages.style.display = "none");
+        }
     </script>
 </body>
+
 </html>
