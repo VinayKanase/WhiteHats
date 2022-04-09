@@ -15,7 +15,7 @@ def search(request):
     """
         Controller for search scholarships page
     """
-    return HttpResponse("Search Page")
+    return render(request, 'search.html')
 
 
 def new(request):
@@ -23,18 +23,18 @@ def new(request):
         Controller to add new scholarships
         Authorized to logged in users only 
     """
-    return HttpResponse("New")
+    return render(request, 'new.html')
 
 
 def login(request):
     """
         Controller to login page
     """
-    return HttpResponse("Login")
+    return render(request, 'login.html')
 
 
 def signUp(request):
     """
         Controller to sign up new user
     """
-    return HttpResponse("sign up")
+    return render(request, 'signUp.html')
