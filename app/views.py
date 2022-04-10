@@ -61,3 +61,27 @@ def profile(request):
         Authorized to logged in users only 
     """
     return render(request, 'profile.html')
+
+
+def admin(request):
+    """
+        Controller to admin page
+        Only admin can be allowed
+    """
+    return render(request, 'admin.html')
+
+
+def admin_verify(request):
+    """
+        Controller to admin verify/unverify scholarships page
+        Only admin can be allowed
+    """
+    return render(request, 'admin_verify.html')
+
+
+def admin_users(request):
+    """
+        Controller to admin to veiw users page
+        Only admin can be allowed
+    """
+    return render(request, 'admin_users.html')
