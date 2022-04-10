@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}" type="text/css">
+{% endblock %}
+{% block title %}
+ADMIN
+{% endblock %}
+{% block content %}
+<section class="section">
+    <main class="dashboard">
+        <h2>Admin Dashboard</h2>
+        <ul class="admin-menu">
+            <li class="{{ verify_active }}"><a href="{% url 'admin_verify' %}">Verify/Unverify Scholarships</a></li>
+            <li class="{{ users_active }}"><a href="{% url 'admin_users' %}">Users</a></li>
+            <!-- <li>Most Commented Scholarships</li> -->
+            <!-- <li>Reported Scholarships</li> -->
+        </ul>
+    </main>
+    <div class="page-wrapper">
+        {% block admin_page %}
+        <h2>Hello, {{ name }}</h2>
+        {% endblock %}
+    </div>
+</section>
+{% endblock %}

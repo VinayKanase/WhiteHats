@@ -1,0 +1,14 @@
+{% extends 'admin.html' %}
+{% block admin_page %}
+<h2>Users</h2>
+<div class="users list">
+    {% for user in users %}
+    <div class="user-card">
+        <!-- <a href=""> -->
+        <h3>{{ user.name }}</h3>
+        <p>{{ user.email }}</p>
+        <!-- </a> -->
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

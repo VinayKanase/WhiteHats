@@ -1,0 +1,31 @@
+{% extends 'admin.html' %}
+{% block admin_page %}
+<h2>Verify/Unverify Scholarships</h2>
+<div class="list">
+    {% for s in scholarships %}
+    <div class="sc-card">
+        <div class="inline">
+            <h3>{{ s.name }}</h3>
+            <p>{{ s.provider }}</p>
+        </div>
+        <div class="options">
+            <a class="btn" target="_blank" href="{% url 'scholarship' id=s.uid %}">View</a>
+            <form action="{% url 'admin_verify' %}" method="post">
+                {% csrf_token %}
+                <input name="id" type="hidden" value="{{ s.uid }}" />
+                {% if s.verified %}
+                <button type="submit" class="btn">Unverify <i class="fa fa-close"></i> </button>
+                {% else %}
+                <button type="submit" class="btn">Verify <i class="fa fa-check"></i> </button>
+                {% endif %}
+            </form>
+            <form action="{% url 'post_delete' %}" method="post">
+                {% csrf_token %}
+                <input name="id" type="hidden" value="{{ s.uid }}" />
+                <button type="submit" class="btn delete">Delete <i class="fa fa-trash"></i> </button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
