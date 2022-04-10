@@ -7,7 +7,7 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('login/', views.login, name='login'),
     path('signUp/', views.signUp, name='signUp'),
-    path('sholarship/', views.sholarship, name='sholarship'),
+    path('scholarship/', views.scholarship, name='scholarship'),
 
 
     # Login Required
