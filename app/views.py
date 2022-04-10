@@ -1,7 +1,26 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from decouple import config
+import pyrebase
 
-# Create your views here.
+# FIREBASE CONIFGURATION
+firebaseConfig = {
+    'apiKey': config('FIREBASE_APIKEY'),
+    'authDomain': config('FIREBASE_AUTHDOMAIN'),
+    'projectId': config('FIREBASE_PROJECTID'),
+    'storageBucket': config('FIREBASE_STORAGEBUCKET'),
+    'messagingSenderId': config('FIREBASE_MESSAGINGSENDERID'),
+    'appId': config('FIREBASE_APPID'),
+    'measurementId': config('FIREBASE_MEASUREMENTID'),
+    'databaseURL': config('FIREBASE_DATABASEURL')
+}
+
+app = pyrebase.initialize_app(firebaseConfig)
+auth = app.auth()
+database = app.database()
+storage = app.storage()
+
+print(database.child('users').get().val())
 
 
 def index(request):
